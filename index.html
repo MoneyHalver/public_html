@@ -92,18 +92,22 @@
         DOWN: 40,
         A: 65,
         D: 68,
-        SPACE: 32
+        SPACE: 32,
+        I: 73,
+        J: 74,
+        K: 75,
+        L: 76
     };
 
     function doKeyDown(e) {
         var key = e.keyCode;
-        if ( key == keys.LEFT )
+        if ( key == keys.LEFT || key == keys.J)
            rotate('y', false);
-        else if ( key == keys.RIGHT )
+        else if ( key == keys.RIGHT || key == keys.L)
            rotate('y', true);
-        else if ( key == keys.DOWN)
+        else if ( key == keys.DOWN || key == keys.K)
            rotate('x', true);
-        else if ( key == keys.UP )
+        else if ( key == keys.UP || key == keys.I)
            rotate('x', false);
         else if ( key == keys.D )
            rotate('z', true);
@@ -149,7 +153,7 @@
 
     <font size="5"> Interactive 1 x 1 Rubik's Cube </font>
     <br>
-    Arrow Keys: Rotate Cube <br>
+    Arrow Keys (or I/J/K/L): Rotate Cube <br>
     A / D: Rotate about Z axis <br>
     Spacebar: Reset Rotation <br>
     <br>
