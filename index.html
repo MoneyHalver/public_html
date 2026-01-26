@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Boilerplate</title>
+    <title>Interactive 1 x 1 Rubik's Cube</title>
 
     <script src="https://www.ecst.csuchico.edu/~oal-saadi/Graphics/source/glsim.js"></script>
 
@@ -85,7 +85,7 @@
         glClearColor(0, 0, 0, 1);
     }
 
-    const keys = {
+    const keys = { // Constant values for key codes
         LEFT: 37,
         UP: 38,
         RIGHT: 39,
@@ -97,19 +97,19 @@
 
     function doKeyDown(e) {
         var key = e.keyCode;
-        if ( key == keys.LEFT ) // left
+        if ( key == keys.LEFT )
            rotate('y', false);
-        else if ( key == keys.RIGHT ) // right
+        else if ( key == keys.RIGHT )
            rotate('y', true);
-        else if ( key == keys.DOWN) // down
+        else if ( key == keys.DOWN)
            rotate('x', true);
-        else if ( key == keys.UP ) // up
+        else if ( key == keys.UP )
            rotate('x', false);
-        else if ( key == keys.D ) // D
+        else if ( key == keys.D )
            rotate('z', true);
-        else if ( key == keys.A ) // A
+        else if ( key == keys.A )
            rotate('z', false);
-        else if ( key == keys.SPACE ) { // space
+        else if ( key == keys.SPACE ) {
             rotateX = 15;
             rotateY = -15;
             rotateZ = 0;
