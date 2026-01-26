@@ -8,157 +8,162 @@
 
     <script> //Add OpenGL Code Here
 
-    var rotateX = 15;   // rotations of cube about the axes
-    var rotateY = -15;
-    var rotateZ = 0;
+        var rotateX = 15;   // rotations of cube about the axes
+        var rotateY = -15;
+        var rotateZ = 0;
 
-    // ------------------- functions for drawing the cube -------------------
-    
-    function cube(size){
+        // ------------------- functions for drawing the cube -------------------
 
-        glScalef(size,size,size); // scale unit cube to desired size
+        function cube(size) {
 
-        glBegin(GL_QUADS);
-        // Front face (z+)
-        glColor3f(1, 0, 0); // Red
-        glVertex3f(-1, -1,  1);
-        glVertex3f( 1, -1,  1);
-        glVertex3f( 1,  1,  1);
-        glVertex3f(-1,  1,  1);
+            glScalef(size, size, size); // scale unit cube to desired size
 
-        // Back face (z-)
-        glColor3f(1, 0.5, 0); // Orange
-        glVertex3f(-1, -1, -1);
-        glVertex3f(-1,  1, -1);
-        glVertex3f( 1,  1, -1);
-        glVertex3f( 1, -1, -1);
+            glBegin(GL_QUADS);
+            // Front face (z+)
+            glColor3f(1, 0, 0); // Red
+            glVertex3f(-1, -1, 1);
+            glVertex3f(1, -1, 1);
+            glVertex3f(1, 1, 1);
+            glVertex3f(-1, 1, 1);
 
-        // Top face (y+)
-        glColor3f(1, 1, 1); // White
-        glVertex3f(-1, 1, -1);
-        glVertex3f(-1, 1,  1);
-        glVertex3f( 1, 1,  1);
-        glVertex3f( 1, 1, -1);
+            // Back face (z-)
+            glColor3f(1, 0.5, 0); // Orange
+            glVertex3f(-1, -1, -1);
+            glVertex3f(-1, 1, -1);
+            glVertex3f(1, 1, -1);
+            glVertex3f(1, -1, -1);
 
-        // Bottom face (y-)
-        glColor3f(1, 1, 0); // Yellow
-        glVertex3f(-1, -1, -1);
-        glVertex3f( 1, -1, -1);
-        glVertex3f( 1, -1,  1);
-        glVertex3f(-1, -1,  1);
+            // Top face (y+)
+            glColor3f(1, 1, 1); // White
+            glVertex3f(-1, 1, -1);
+            glVertex3f(-1, 1, 1);
+            glVertex3f(1, 1, 1);
+            glVertex3f(1, 1, -1);
 
-        // Right face (x+)
-        glColor3f(0, 0, 1); // Blue
-        glVertex3f(1, -1, -1);
-        glVertex3f(1,  1, -1);
-        glVertex3f(1,  1,  1);
-        glVertex3f(1, -1,  1);
+            // Bottom face (y-)
+            glColor3f(1, 1, 0); // Yellow
+            glVertex3f(-1, -1, -1);
+            glVertex3f(1, -1, -1);
+            glVertex3f(1, -1, 1);
+            glVertex3f(-1, -1, 1);
 
-        // Left face (x-)
-        glColor3f(0, 1, 0); // Green
-        glVertex3f(-1, -1, -1);
-        glVertex3f(-1, -1,  1);
-        glVertex3f(-1,  1,  1);
-        glVertex3f(-1,  1, -1);
-        glEnd();
-    }
+            // Right face (x+)
+            glColor3f(0, 0, 1); // Blue
+            glVertex3f(1, -1, -1);
+            glVertex3f(1, 1, -1);
+            glVertex3f(1, 1, 1);
+            glVertex3f(1, -1, 1);
 
-    
-    // ----------------------------------------------------------------------
-
-    function display() {  // Draws the image.
-
-        glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-                
-        glLoadIdentity(); // Set up modelview transform. 
-        glRotatef(rotateZ,0,0,1);
-        glRotatef(rotateY,0,1,0);
-        glRotatef(rotateX,1,0,0);
-        cube(.5);
-    }
-    
-    function initGL() {
-        glMatrixMode(GL_PROJECTION);
-        glOrtho(-1, 1, -1, 1, -1, 1); // Orthographic Projection
-        glMatrixMode(GL_MODELVIEW);
-        glEnable(GL_DEPTH_TEST);
-        glClearColor(0, 0, 0, 1);
-    }
-
-    const keys = { // Constant values for key codes
-        LEFT: 37,
-        UP: 38,
-        RIGHT: 39,
-        DOWN: 40,
-        A: 65,
-        D: 68,
-        SPACE: 32,
-        I: 73,
-        J: 74,
-        K: 75,
-        L: 76
-    };
-
-    function doKeyDown(e) {
-        var key = e.keyCode;
-        if ( key == keys.LEFT || key == keys.J)
-           rotate('y', false);
-        else if ( key == keys.RIGHT || key == keys.L)
-           rotate('y', true);
-        else if ( key == keys.DOWN || key == keys.K)
-           rotate('x', true);
-        else if ( key == keys.UP || key == keys.I)
-           rotate('x', false);
-        else if ( key == keys.D )
-           rotate('z', true);
-        else if ( key == keys.A )
-           rotate('z', false);
-        else if ( key == keys.SPACE ) {
-            rotateX = 15;
-            rotateY = -15;
-            rotateZ = 0;
-    }
-        display();
-    }
-
-    function rotate(plane, positive) {
-        rotateRecursive(plane, positive, 18);
-    }
-    function rotateRecursive(plane, positive, steps) {
-        if (steps <= 0) return;
-        if (plane == 'x') {
-            rotateX += (positive ? 5 : -5);
-        } else if (plane == 'y') {
-            rotateY += (positive ? 5 : -5);
-        } else if (plane == 'z') {
-            rotateZ += (positive ? 5 : -5);
+            // Left face (x-)
+            glColor3f(0, 1, 0); // Green
+            glVertex3f(-1, -1, -1);
+            glVertex3f(-1, -1, 1);
+            glVertex3f(-1, 1, 1);
+            glVertex3f(-1, 1, -1);
+            glEnd();
         }
-        setTimeout(() => rotateRecursive(plane, positive, steps - 1), 5);
-        display();
-    }
-    
-    function init() {  // Called by , when the page has loaded.
-        glsimUse("glcanvas"); // OpenGL will draw to the canvas with id="glcanvas".
-        document.onkeydown = doKeyDown;
-        initGL();
-        display();
-    }
+
+
+        // ----------------------------------------------------------------------
+
+        function display() {  // Draws the image.
+
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+            glLoadIdentity(); // Set up modelview transform. 
+            glRotatef(rotateZ, 0, 0, 1);
+            glRotatef(rotateY, 0, 1, 0);
+            glRotatef(rotateX, 1, 0, 0);
+            cube(.3);
+        }
+
+        function initGL() {
+            glMatrixMode(GL_PROJECTION);
+            glOrtho(-1, 1, -1, 1, -1, 1); // Orthographic Projection
+            glMatrixMode(GL_MODELVIEW);
+            glEnable(GL_DEPTH_TEST);
+            glClearColor(0, 0, 0, 1);
+        }
+
+        const keys = { // Constant values for key codes
+            LEFT: 37,
+            UP: 38,
+            RIGHT: 39,
+            DOWN: 40,
+            A: 65,
+            D: 68,
+            SPACE: 32,
+            I: 73,
+            J: 74,
+            K: 75,
+            L: 76
+        };
+
+        function doKeyDown(e) {
+            var key = e.keyCode;
+            if (key == keys.LEFT || key == keys.J)
+                rotate('y', false);
+            else if (key == keys.RIGHT || key == keys.L)
+                rotate('y', true);
+            else if (key == keys.DOWN || key == keys.K)
+                rotate('x', true);
+            else if (key == keys.UP || key == keys.I)
+                rotate('x', false);
+            else if (key == keys.D)
+                rotate('z', true);
+            else if (key == keys.A)
+                rotate('z', false);
+            else if (key == keys.SPACE) {
+                rotateX = 15;
+                rotateY = -15;
+                rotateZ = 0;
+            }
+            display();
+        }
+
+        function rotate(plane, positive) {
+            rotateRecursive(plane, positive, 18);
+        }
+        function rotateRecursive(plane, positive, steps) {
+            if (steps <= 0) return;
+            if (plane == 'x') {
+                rotateX += (positive ? 5 : -5);
+            } else if (plane == 'y') {
+                rotateY += (positive ? 5 : -5);
+            } else if (plane == 'z') {
+                rotateZ += (positive ? 5 : -5);
+            }
+            setTimeout(() => rotateRecursive(plane, positive, steps - 1), 5);
+            display();
+        }
+
+        function init() {  // Called by , when the page has loaded.
+            glsimUse("glcanvas"); // OpenGL will draw to the canvas with id="glcanvas".
+            document.onkeydown = doKeyDown;
+            initGL();
+            display();
+        }
     </script>
 
 </head>
 
 <br>
 
-<body onload="init();" style="background-color:rgb(158, 143, 216);">
-
-    <font size="5"> Interactive 1 x 1 Rubik's Cube </font>
-    <br>
-    Arrow Keys (or I/J/K/L): Rotate Cube <br>
-    A / D: Rotate about Z axis <br>
-    Spacebar: Reset Rotation <br>
-    <br>
-
-    <canvas id="glcanvas" width="300" height="300">
+<body onload="init();" style="background-color:black;">
+    <div style="text-align: center;">
+        <font size="12" style = "color: yellow;"> Interactive 1 x 1 Rubik's Cube </font>
+        <br>
+        <canvas id="glcanvas" width="600" height="600"
+            style="border: 4px solid white; background-color:rgb(240, 240, 240);">
+        </canvas>
+        <br>
+        <font style = "color: yellow;">
+        Arrow Keys (or I/J/K/L): Rotate Cube <br>
+        A / D: Rotate about Z axis <br>
+        Spacebar: Reset Rotation <br>
+        <br>
+        </font>
+    </div>
 
 </body>
 
