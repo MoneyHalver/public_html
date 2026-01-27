@@ -127,19 +127,19 @@
             else if (key == keys.UP || key == keys.I)
                 rotate('x', false);
             else if (key == keys.D)
-                rotate('z', true);
-            else if (key == keys.A)
                 rotate('z', false);
+            else if (key == keys.A)
+                rotate('z', true);
             else if (key == keys.SPACE) {
                 rotateX = 15;
                 rotateY = -15;
                 rotateZ = 0;
             }
             else if (key == keys.W) {
-                rotate('w', false);
+                rotate('w', true);
             }
             else if (key == keys.S) {
-                rotate('w', true);
+                rotate('w', false);
             }
             else if (key == keys.R) {
                 rotate('v', false);
