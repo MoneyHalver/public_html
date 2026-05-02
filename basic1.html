@@ -1,0 +1,53 @@
+<span style="color:darkblue">Welcome to Page One</span><br>
+<a href="basic2.html">basic2.html</a><br>
+<b>This line should be bold on page one</b><br>
+<img src="construction.gif"><br>
+<span style="font-size:200%;">Page One Demo</span><br>
+This page shows the finite loop and all operators<br>
+<body style="background-color:lightyellow; background-image:url('background.png'); background-repeat:repeat; ">
+<script>
+console.log("=== PAGE ONE START ===");
+var x = 5;
+var y = 2;
+var z = (1 + 2) + 3;
+console.log("x value:");
+console.log(x);
+console.log("y value:");
+console.log(y);
+console.log("z value:");
+console.log(z);
+console.log("Addition:");
+console.log(x + y);
+console.log("Subtraction:");
+console.log(x - y);
+console.log("Multiplication:");
+console.log(x * y);
+console.log("Division:");
+console.log(x / y);
+console.log("Precedence test, should treat * before +:");
+console.log(x + y * 3);
+console.log("Parentheses test:");
+console.log((x + y) * 3);
+if (x == 5) {
+console.log("x equals 5");
+} else {
+console.log("x does not equal 5");
+}
+if (x < 10) {
+console.log("x is less than 10");
+} else {
+console.log("x is not less than 10");
+}
+if (x > 10) {
+console.log("x is greater than 10");
+} else {
+console.log("x is not greater than 10");
+}
+var counter = 0;
+while (counter < 4) {
+console.log("finite loop counter:");
+console.log(counter);
+var counter = counter + 1;
+}
+console.log("=== PAGE ONE END ===");
+</script>
