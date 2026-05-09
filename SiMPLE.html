@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Boilerplate</title>
+<script src="https://www.ecst.csuchico.edu/~oal-saadi/Graphics/source/glsim.js"></script>
+<script>
+function drawUnitCube() {
+    glBegin(GL_QUADS);
+    glNormal3f(0,0,1);
+    glVertex3f(-0.5,-0.5, 0.5); glVertex3f(0.5,-0.5, 0.5); glVertex3f(0.5,0.5, 0.5); glVertex3f(-0.5,0.5, 0.5);
+    glNormal3f(0,0,-1);
+    glVertex3f(-0.5,-0.5,-0.5); glVertex3f(-0.5,0.5,-0.5); glVertex3f(0.5,0.5,-0.5); glVertex3f(0.5,-0.5,-0.5);
+    glNormal3f(0,1,0);
+    glVertex3f(-0.5,0.5,-0.5); glVertex3f(-0.5,0.5,0.5); glVertex3f(0.5,0.5,0.5); glVertex3f(0.5,0.5,-0.5);
+    glNormal3f(0,-1,0);
+    glVertex3f(-0.5,-0.5,-0.5); glVertex3f(0.5,-0.5,-0.5); glVertex3f(0.5,-0.5,0.5); glVertex3f(-0.5,-0.5,0.5);
+    glNormal3f(1,0,0);
+    glVertex3f(0.5,-0.5,-0.5); glVertex3f(0.5,0.5,-0.5); glVertex3f(0.5,0.5,0.5); glVertex3f(0.5,-0.5,0.5);
+    glNormal3f(-1,0,0);
+    glVertex3f(-0.5,-0.5,-0.5); glVertex3f(-0.5,-0.5,0.5); glVertex3f(-0.5,0.5,0.5); glVertex3f(-0.5,0.5,-0.5);
+    glEnd();
+}
+function drawWireSphere() {
+    var lat, lon;
+    for (lat = -60; lat <= 60; lat += 30) {
+        glBegin(GL_LINE_LOOP);
+        for (lon = 0; lon < 360; lon += 20) {
+            var x = Math.cos(lat*Math.PI/180) * Math.cos(lon*Math.PI/180);
+            var y = Math.sin(lat*Math.PI/180);
+            var z = Math.cos(lat*Math.PI/180) * Math.sin(lon*Math.PI/180);
+            glVertex3f(x,y,z);
+        }
+        glEnd();
+    }
+}
+function display() {
+glMatrixMode(GL_PROJECTION);
+glLoadIdentity();
+glFrustum(-1, 1, -1, 1, 1, 100);
+glMatrixMode(GL_MODELVIEW);
+glLoadIdentity();
+glLightfv(GL_LIGHT0, GL_AMBIENT, [0, 0, 0.3, 1]);
+glLightfv(GL_LIGHT0, GL_DIFFUSE, [1, 1, 1, 1]);
+glLightfv(GL_LIGHT0, GL_SPECULAR, [1, 0, 0, 1]);
+glEnable(GL_LIGHTING);
+glEnable(GL_LIGHT0);
+glEnable(GL_DEPTH_TEST);
+
+glLightfv(GL_LIGHT0, GL_POSITION, [-3, 2, 2, 0]);
+;
+if (typeof x === "undefined") { x = -1; };
+(x + -2);
+if (typeof dx === "undefined") { dx = 0.04; };
+if (typeof angle === "undefined") { angle = 0; };
+glClearColor(0, 0, 0, 1);
+glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+;
+if (((x > 1.5) || (x < -1.5))) {
+dx = (dx * -1);
+} else {
+dx = dx;
+};
+x = (x + dx);;
+angle = (angle + 3);;
+glColor3f(0, 0, 1);
+glBegin(GL_LINES);
+glVertex3f(0, -1, -6);
+glVertex3f(-2, -1, -6);
+glVertex3f(-2, -1, -6);
+glVertex3f(-2, 1, -6);
+glVertex3f(-2, 1, -6);
+glVertex3f(2, 1, -6);
+glVertex3f(2, 1, -6);
+glVertex3f(2, -1, -6);
+glVertex3f(2, -1, -6);
+glVertex3f(0, -1, -6);
+glEnd();
+;
+glPushMatrix();
+glColor3f(1, 0, 0);
+glMaterialfv(GL_FRONT, GL_DIFFUSE, [1, 0, 0, 1]);
+glTranslatef(x, 0, -6);
+glRotatef(angle, 1, 0, 0);
+glRotatef(angle, 0, 1, 0);
+glRotatef(0, 0, 0, 1);
+glScalef(0.5, 0.5, 0.5);
+drawUnitCube();
+glPopMatrix();
+;
+glPushMatrix();
+glColor3f(0, 1, 0);
+glMaterialfv(GL_FRONT, GL_DIFFUSE, [0, 1, 0, 1]);
+glTranslatef((x * -1), 0, -6);
+glRotatef(0, 1, 0, 0);
+glRotatef(angle, 0, 1, 0);
+glRotatef(0, 0, 0, 1);
+glScalef(0.4, 0.4, 0.4);
+drawWireSphere();
+glPopMatrix();
+}
+console.log("AST nodes before optimization =", 128);
+console.log("AST nodes after optimization =", 114);
+function init() {
+    glsimUse("glcanvas");
+    setInterval(function() {
+        requestAnimationFrame(display);
+    }, 30);
+}
+</script>
+</head>
+<body onload="init();" style="background-color:powderblue;">
+    <font size="5">Look! it's the assignment!</font><br>
+    The requirements for this assignment have been fulfilled! probably! i hope!<br>
+    <canvas id="glcanvas" width="300" height="300"></canvas>
+</body>
+</html>
